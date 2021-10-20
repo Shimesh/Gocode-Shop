@@ -8,7 +8,7 @@ function Header() {
 
         <div className="sort">
           <div className="collection-sort">
-            <label>Filter by:</label>
+            <label>Filter by: </label>
             <select>
               <option value="/">All Jackets</option>
               <option value="/">2016</option>
