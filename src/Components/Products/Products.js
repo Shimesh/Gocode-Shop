@@ -1,111 +1,21 @@
 import React from "react";
 import Product from "./Product/Product";
+import "./Products.css";
 
-function Products() {
+function Products({ products }) {
   return (
-    <div>
-      <section className="products">
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <div className="product-image">
-            <img src="https://cdn.shopify.com/s/files/1/0938/8938/products/10231100205_1_1315x1800_300_CMYK_1024x1024.jpeg?v=1445623369" />
-          </div>
-          <div className="product-info">
-            <h5>Winter Jacket</h5>
-            <h6>$99.99</h6>
-          </div>
-        </div>
-      </section>
-    </div>
+    <section className="products">
+      {products.map((product) => (
+        <Product
+          key={product.id}
+          title={product.title}
+          price={product.price}
+          description={product.description}
+          category={product.category}
+          image={product.image}
+        />
+      ))}
+    </section>
   );
 }
 
