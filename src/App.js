@@ -1,5 +1,7 @@
+import { useState } from "react/cjs/react.development";
 import "./App.css";
 import Header from "./Components/Header/Header";
+import MagicButton from "./Components/MagicButton/MagicButton";
 import Products from "./Components/Products/Products";
 
 function App() {
@@ -271,10 +273,22 @@ function App() {
       },
     },
   ];
+  const [filtered, setFiltered] = useState(productsList);
+
+  const categories = productsList
+    .map((p) => p.category)
+    .filter((value, index, array) => array.indexOf(value) === index);
+
+  const filterCategory = (cat) => {
+    const list = productsList.filter((newList) => newList.category === cat);
+    setFiltered(list);
+  };
+
   return (
     <>
-      <Header />
-      <Products products={productsList} />
+      <Header categories={categories} filterFunc={filterCategory} />
+      <MagicButton />
+      <Products products={filtered} />
     </>
   );
 }
