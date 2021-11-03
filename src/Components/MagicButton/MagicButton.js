@@ -1,23 +1,16 @@
 import React, { useState } from "react";
 
 function MagicButton() {
-  const [text, setText] = useState("This is Some Text");
-  const [hidden, setHidden] = useState(false);
+  const [magic, setMagic] = useState("This is Some magic");
 
-  const textDisappear = () => {
-    setHidden(() => true);
-    if (hidden) {
-      setText(() => "   ");
-      setHidden(() => false);
-    } else {
-      setText(() => "This is Some Text");
-    }
+  const magicDisappear = () => {
+    magic ? setMagic("") : setMagic("This is Some magic");
   };
 
   return (
     <div>
-      <button onClick={textDisappear}>Magic Time</button>
-      {text}
+      <button onClick={magicDisappear}>Magic Time</button>
+      {magic}
     </div>
   );
 }
