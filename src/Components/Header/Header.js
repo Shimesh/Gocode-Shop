@@ -9,7 +9,6 @@ function Header({ categories, filterFunc }) {
         <div className="collection-sort">
           <label>Filter by: </label>
           <select onChange={(e) => filterFunc(e.target.value)}>
-            <option>-ALL-</option>
             {categories.map((cat) => (
               <option key={cat} value={cat}>
                 {cat}

@@ -275,13 +275,17 @@ function App() {
   ];
   const [filtered, setFiltered] = useState(productsList);
 
-  const categories = productsList
-    .map((p) => p.category)
-    .filter((value, index, array) => array.indexOf(value) === index);
+  const categories = [
+    "-ALL-",
+    ...productsList
+      .map((p) => p.category)
+      .filter((value, index, array) => array.indexOf(value) === index),
+  ];
 
   const filterCategory = (cat) => {
-    const list = productsList.filter((newList) => newList.category === cat);
-    setFiltered(list);
+    cat === "-ALL-"
+      ? setFiltered(productsList)
+      : setFiltered(productsList.filter((newList) => newList.category === cat));
   };
 
   return (
