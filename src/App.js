@@ -4,6 +4,8 @@ import "./App.css";
 import Header from "./Components/Header/Header";
 import MagicButton from "./Components/MagicButton/MagicButton";
 import Products from "./Components/Products/Products";
+import CartContext from "./CartContext";
+import Cart from "./Components/Cart/Cart";
 
 function App() {
   const fetchProducts = async () => {
@@ -13,18 +15,15 @@ function App() {
     setFiltered(list);
   };
   const [products, setProducts] = useState([]);
-
   useEffect(() => fetchProducts(), []);
-
   const [filtered, setFiltered] = useState(products);
-
+  const [cartItems, setCartItems] = useState([]);
   const categories = [
     "-ALL-",
     ...products
       .map((p) => p.category)
       .filter((value, index, array) => array.indexOf(value) === index),
   ];
-
   const filterCategory = (cat) => {
     cat === "-ALL-"
       ? setFiltered(products)
@@ -35,7 +34,10 @@ function App() {
     <>
       <Header categories={categories} filterFunc={filterCategory} />
       <MagicButton />
-      <Products products={filtered} />
+      <CartContext.Provider value={{ filtered, cartItems, setCartItems }}>
+        <Cart />
+        <Products products={filtered} />
+      </CartContext.Provider>
     </>
   );
 }
