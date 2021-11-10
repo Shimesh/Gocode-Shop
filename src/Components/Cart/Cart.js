@@ -1,51 +1,26 @@
-import React, { useContext, useEffect } from "react";
-import { useState } from "react/cjs/react.development";
-import CartContext from "../../CartContext";
+import React, { useContext } from "react";
+import { CartContext } from "../../CartContext";
+
+import "./Cart.css";
 
 function Cart() {
-  const { cartItems } = useContext(CartContext);
-  const [items, setItems] = useState(cartItems);
-  useEffect(() => {
-    setItems(cartItems);
-  }, [cartItems]);
-
-  const styles = {
-    display: "flex",
-    flexDirection: "column",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "10em",
-    hight: "5em",
-    backgroundColor: "white",
-    border: ".5px dashed black",
-  };
+  const [cart] = useContext(CartContext);
 
   return (
-    <div
-      style={{
-        width: "70em",
-        hight: "20em",
-        backgroundColor: "cyan",
-        display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <h1>This Is The Cart</h1>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        {items.map((item) => (
-          <div key={item} style={styles}>
-            <span>{item.title}</span>
-            <img
-              src={item.image}
-              style={{ width: "50px", hight: "50px" }}
-              alt={item.title}
-            />
-            <span>{item.price}$</span>
-            <span>{item.amount}</span>
+    <div className="cart">
+      <div className="title">
+        <h1>Shopping Cart</h1>
+      </div>
+      <div className="itemList">
+        {cart.map((p) => (
+          <div className="item" key={p.id}>
+            <span>{p.title}</span>
+
+            <span>{p.price}$</span>
+            <img src={p.image} className="cartImage" alt={p.title} />
+            <button>+</button>
+            <span>{p.amount}</span>
+            <button>-</button>
           </div>
         ))}
       </div>

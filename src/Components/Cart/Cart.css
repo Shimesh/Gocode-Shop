@@ -1,0 +1,43 @@
+.cart {
+  margin: 1em 1em;
+  width: 77.5em;
+  height: 300px;
+  background-color: rgb(107, 178, 206);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.itemList {
+  display: flex;
+  border: black solid 1px;
+  background-color: rgb(13, 207, 214);
+  width: 75em;
+}
+
+.item {
+  border: black solid 1px;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 10em;
+  height: 10em;
+}
+.cartImage {
+  height: 70px;
+  width: 70px;
+}
+
+.title {
+  margin: 1em 1em;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  color: whitesmoke;
+  margin-top: 2rem;
+}
