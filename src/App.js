@@ -1,45 +1,23 @@
-import { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import * as React from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
-import Header from "./Components/Header/Header";
-import MagicButton from "./Components/MagicButton/MagicButton";
-import Products from "./Components/Products/Products";
-import { CartProvider } from "./CartContext";
-import Cart from "./Components/Cart/Cart";
+import Home from "./Components/Home/Home";
+import About from "./Components/About/About";
+import Product from "./Components/Products/Product/Product";
 
-function App() {
-  const fetchProducts = async () => {
-    const res = await fetch("https://fakestoreapi.com/products");
-    const list = await res.json();
-    setProducts(list);
-    setFiltered(list);
-  };
-  const [products, setProducts] = useState([]);
-  useEffect(() => fetchProducts(), []);
-  const [filtered, setFiltered] = useState(products);
-
-  const categories = [
-    "-ALL-",
-    ...products
-      .map((p) => p.category)
-      .filter((value, index, array) => array.indexOf(value) === index),
-  ];
-  const filterCategory = (cat) => {
-    cat === "-ALL-"
-      ? setFiltered(products)
-      : setFiltered(products.filter((newList) => newList.category === cat));
-  };
-
+const App = () => {
   return (
-    <>
-      <CartProvider>
-        <Header categories={categories} filterFunc={filterCategory} />
-        <MagicButton />
-        <Cart />
-        <Products products={filtered} />
-      </CartProvider>
-    </>
+    <div className="App">
+      <Link to="/">Home</Link>
+      <br />
+      <Link to="/about">About</Link>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<Product />} />
+        <Route path="about" element={<About />} />
+      </Routes>
+    </div>
   );
-}
+};
 
 export default App;

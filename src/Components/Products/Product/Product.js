@@ -3,25 +3,14 @@ import React, { useContext, useState } from "react";
 import { CartContext } from "../../../CartContext";
 import "../Products.css";
 
-function Product({ title, price, image, id }) {
+function Product({ title, price, image, _id: id }) {
   const [cart, setCart] = useContext(CartContext);
   const [amount, setAmount] = useState(0);
 
   const handleClick = ({ title, price, image, id }) => {
-    const productsList = cart
-      .map((p) => [
-        {
-          title,
-          price,
-          image,
-          id,
-          amount,
-        },
-      ])
-      .filter((val) => {
-        return id !== val.id;
-      });
-    console.log({ productsList });
+    //check if the item exist
+    //if exist update the item amount if not add to cart
+
     const product = {
       title,
       price,
@@ -31,6 +20,14 @@ function Product({ title, price, image, id }) {
     };
 
     setCart(() => [...cart, product]);
+    console.log(product);
+    console.log(cart);
+    // cart.map((item) => {
+    //   return item.id === product.id
+    //     ? ((item.amount = setAmount(() => amount + 1)),
+    //       setCart(() => [...cart, product]))
+    //     : setCart(() => [...cart, product]);
+    // });
   };
 
   // const addToCart = () => {};
@@ -49,7 +46,7 @@ function Product({ title, price, image, id }) {
         <button
           onClick={() =>
             handleClick(
-              { title, price, image, id },
+              { title, price, image, id, amount },
               setAmount(() => amount + 1)
             )
           }
@@ -60,7 +57,7 @@ function Product({ title, price, image, id }) {
         <button
           onClick={() =>
             handleClick(
-              { title, price, image, id },
+              { title, price, image, id, amount },
               setAmount(() => amount && amount - 1)
             )
           }

@@ -18,9 +18,11 @@ function Cart() {
 
             <span>{p.price}$</span>
             <img src={p.image} className="cartImage" alt={p.title} />
-            <button>+</button>
-            <span>{p.amount}</span>
-            <button>-</button>
+            <div className="btn">
+              <button>+</button>
+              <span>{p.amount}</span>
+              <button>-</button>
+            </div>
           </div>
         ))}
       </div>

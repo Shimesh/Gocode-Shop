@@ -1,6 +1,7 @@
 import React from "react";
+import RangeSlider from "./RangeSlider";
 
-function Header({ categories, filterFunc }) {
+function Header({ categories, filterFunc, sliderValues }) {
   return (
     <nav className="product-filter">
       <h1>Jackets</h1>
@@ -29,6 +30,7 @@ function Header({ categories, filterFunc }) {
             <option value="/">Date, new to old</option>
             <option value="/">Date, old to new</option>
           </select>
+          {sliderValues.length > 0 && <RangeSlider value={sliderValues} />}
         </div>
       </div>
     </nav>

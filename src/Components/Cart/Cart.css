@@ -28,6 +28,10 @@
   width: 10em;
   height: 10em;
 }
+.btn {
+  margin-top: 0.2em;
+  display: flex;
+}
 .cartImage {
   height: 70px;
   width: 70px;
