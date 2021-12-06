@@ -83,6 +83,8 @@ app.put("/products/:id", async (req, res) => {
   res.status(200).send(updatedProduct);
 });
 
-app.listen(8080, () => console.log("Server up and running"));
+app.listen(process.env.PORT || 8080, () =>
+  console.log("Server up and running")
+);
 
 initProducts();
