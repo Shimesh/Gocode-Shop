@@ -47,20 +47,18 @@ function Home() {
   };
 
   return (
-    <>
-      <ProductsContext.Provider value={[products, setProducts]}>
-        <CartProvider>
-          <Header
-            categories={categories}
-            filterFunc={filterCategory}
-            sliderValues={sliderValues}
-          />
-          <MagicButton />
-          {/* <Cart /> */}
-          <Products products={filtered} />
-        </CartProvider>
-      </ProductsContext.Provider>
-    </>
+    <ProductsContext.Provider value={[products, setProducts]}>
+      <CartProvider>
+        <Header
+          categories={categories}
+          filterFunc={filterCategory}
+          sliderValues={sliderValues}
+        />
+        <MagicButton />
+        {/* <Cart /> */}
+        <Products products={filtered} />
+      </CartProvider>
+    </ProductsContext.Provider>
   );
 }
 
