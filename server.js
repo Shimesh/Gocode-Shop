@@ -22,6 +22,7 @@ db.once("open", () => console.log("Connected to DB"));
 const app = express();
 app.use(express.json());
 app.use(cors());
+app.use(express.static("client/build"));
 
 // Getting Initial Products
 async function initProducts() {
@@ -81,6 +82,10 @@ app.put("/api/products/:id", async (req, res) => {
   const product = await Products.findByIdAndUpdate(id, { ...body });
   const updatedProduct = await Products.findById(id);
   res.status(200).send(updatedProduct);
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(__dirname + "/client/build/index.html");
 });
 
 app.listen(process.env.PORT || 8080, () =>

@@ -22,7 +22,7 @@ function Home() {
   };
 
   const fetchProducts = async () => {
-    const res = await fetch("/products");
+    const res = await fetch("/api/products");
     const list = await res.json();
 
     setProducts(list);
