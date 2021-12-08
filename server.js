@@ -5,6 +5,7 @@ import Products from "./models/products.js";
 import cors from "cors";
 import dotenv from "dotenv";
 import { dirname } from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
@@ -87,6 +88,7 @@ app.put("/api/products/:id", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
+  const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
   res.sendFile(__dirname + "/client/build/index.html");
 });
