@@ -4,6 +4,8 @@ import mongoose from "mongoose";
 import Products from "./models/products.js";
 import cors from "cors";
 import dotenv from "dotenv";
+import { dirname } from "path";
+
 dotenv.config();
 
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
@@ -85,7 +87,8 @@ app.put("/api/products/:id", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile("client/build/index.html");
+  const __dirname = dirname(__filename);
+  res.sendFile(__dirname + "/client/build/index.html");
 });
 
 app.listen(process.env.PORT || 8080, () =>
