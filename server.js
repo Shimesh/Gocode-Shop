@@ -11,21 +11,11 @@ dotenv.config();
 
 const { DB_USER, DB_PASS, DB_HOST, DB_NAME } = process.env;
 
-// mongoose connection
-mongoose.connect(
-  `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`
-);
-
-//Creating a DB
-const db = mongoose.connection;
-db.on("error", (err) => console.log("Connection error:", err));
-db.once("open", () => console.log("Connected to DB"));
-
 // Creating Express App
 const app = express();
+app.use(express.static("client/build"));
 app.use(express.json());
 app.use(cors());
-app.use(express.static("client/build"));
 
 // Getting Initial Products
 async function initProducts() {
@@ -38,13 +28,13 @@ async function initProducts() {
       console.log("successfully Populated Products DB");
     });
   } else {
-    db.dropCollection("products");
-    const res = await fetch("https://fakestoreapi.com/products");
-    const data = await res.json();
-    const mapped = data.map((p) => ({ ...p }));
-    await Products.insertMany(mapped, () => {
-      console.log("successfully Populated Products DB");
-    });
+    // db.dropCollection("products");
+    // const res = await fetch("https://fakestoreapi.com/products");
+    // const data = await res.json();
+    // const mapped = data.map((p) => ({ ...p }));
+    // await Products.insertMany(mapped, () => {
+    //   console.log("successfully Populated Products DB");
+    // });
   }
 }
 
@@ -93,8 +83,13 @@ app.get("*", (req, res) => {
   res.sendFile(__dirname + "/client/build/index.html");
 });
 
-app.listen(process.env.PORT || 8080, () =>
-  console.log("Server up and running")
-);
+mongoose.connect(
+  `mongodb+srv://${DB_USER}:${DB_PASS}@${DB_HOST}/${DB_NAME}?retryWrites=true&w=majority`,
+  () => {
+    app.listen(process.env.PORT || 8080, () => {
+      initProducts();
 
-initProducts();
+      console.log("Server up and running");
+    });
+  }
+);

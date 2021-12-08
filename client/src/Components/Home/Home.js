@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { useState } from "react/cjs/react.development";
+import { useEffect, useState } from "react";
 import "./Home.css";
 import Header from "../Header/Header";
 import MagicButton from "../MagicButton/MagicButton";
