@@ -44,11 +44,11 @@ async function initProducts() {
   }
 }
 
-app.get("/", (req, res) => {
+app.get("/api/", (req, res) => {
   res.send("Hello");
 });
 
-app.get("/products", async (req, res) => {
+app.get("/api/products", async (req, res) => {
   try {
     const products = await Products.find();
     res.status(200).json(products);
@@ -57,25 +57,25 @@ app.get("/products", async (req, res) => {
   }
 });
 
-app.get("/products/:id", async (req, res) => {
+app.get("/api/products/:id", async (req, res) => {
   const { id } = req.params;
   const product = await Products.findById(id);
   res.status(200).send(product);
 });
 
-app.post("/products", async (req, res) => {
+app.post("/api/products", async (req, res) => {
   const body = req.body;
   const product = await Products.create({ ...body });
   res.status(200).send(product);
 });
 
-app.delete("/products/:id", async (req, res) => {
+app.delete("/api/products/:id", async (req, res) => {
   const { id } = req.params;
   const product = await Products.findByIdAndRemove(id);
   res.status(200).send(product);
 });
 
-app.put("/products/:id", async (req, res) => {
+app.put("/api/products/:id", async (req, res) => {
   const { id } = req.params;
   const body = req.body;
   const product = await Products.findByIdAndUpdate(id, { ...body });
